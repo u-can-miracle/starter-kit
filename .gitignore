@@ -1,0 +1,8 @@
+node_modules
+dist
+client/dist
+.idea
+.tmp
+.DS_Store
+.DS_Store?
+*.log*
