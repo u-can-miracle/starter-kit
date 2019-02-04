@@ -2,7 +2,12 @@
 import { connect } from 'react-redux'
 
 import Counter from './Counter'
-import { increaseCounter, reduceCounter } from '../../redux/counter/actions'
+import {
+	increaseCounter,
+	reduceCounter,
+	increaseCounterAsync,
+	reduceCounterAsync,
+} from '../../redux/counter/actions'
 import { counterSelector } from '../../redux/counter/selectors'
 
 const mapStateToProps = (state, props) => ({
@@ -11,7 +16,9 @@ const mapStateToProps = (state, props) => ({
 
 const mapDispatchToProps = (dispatch, props) => ({
 	increaseCounter: () => dispatch(increaseCounter()),
-	reduceCounter: () => dispatch(reduceCounter())
+	reduceCounter: () => dispatch(reduceCounter()),
+	increaseCounterAsync: () => dispatch(increaseCounterAsync()),
+	reduceCounterAsync: () => dispatch(reduceCounterAsync())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Counter)

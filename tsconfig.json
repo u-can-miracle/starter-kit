@@ -11,7 +11,7 @@
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "strictNullChecks": true,
-    "noImplicitAny": false,
+    "noImplicitAny": false
   },
   "include": [
     "./src"

@@ -1,6 +1,12 @@
 import * as React from 'react'
 
-const Counter = ({ counter, increaseCounter, reduceCounter }) =>
+const Counter = ({
+	counter,
+	increaseCounter,
+	reduceCounter,
+	increaseCounterAsync,
+	reduceCounterAsync,
+}) =>
 	(
 		<div>
 			<button
@@ -14,6 +20,20 @@ const Counter = ({ counter, increaseCounter, reduceCounter }) =>
 			>
 				reduce count (-)
 			</button>
+			<hr />
+			<div>
+			<button
+				onClick={increaseCounterAsync}
+			>
+				increase async (+)
+			</button>
+			{counter}
+			<button
+				onClick={reduceCounterAsync}
+			>
+				reduce async (-)
+			</button>
+			</div>
 		</div>
 	)
 
