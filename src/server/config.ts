@@ -33,7 +33,7 @@ export default function configExpressApp(app: express.Application) {
 	app.use(express.static('src/client')) // index
 	app.use(express.static('dist/assets/')) // fonts
 	app.use(express.static('dist/assets/favicons'))
-  app.use(express.static('dist/')) // bundle
+	app.use(express.static('dist/')) // bundle
 
 	app.use(bodyParser.json())
 

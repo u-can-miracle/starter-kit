@@ -4,25 +4,25 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 
 module.exports = {
   mode: 'development',
-  entry: { 
-    index: [
-      'babel-polyfill', 
-      'react-hot-loader/patch',
-      'webpack-hot-middleware/client',
-      './src/client/index.tsx'
-    ] 
-  },
+  entry: [
+		'babel-polyfill',
+		'react-hot-loader/patch',
+		'webpack-hot-middleware/client',
+		'./src/client/index.tsx'
+	],
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, '../dist'),
     publicPath: '/',
-    hotUpdateChunkFilename: 'hot/hot-update.js',
-    hotUpdateMainFilename: 'hot/hot-update.json'
+		// infinite HMR update
+		// hotUpdateChunkFilename: 'hot/hot-update.js',
+    // hotUpdateMainFilename: 'hot/hot-update.json'
   },
-  devtool: false,
+  devtool: 'source-map',
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
   },
+	watch: true,
   module: {
     rules: [
       {
@@ -34,15 +34,11 @@ module.exports = {
             cacheDirectory: true,
             babelrc: false,
             presets: [
-              [
-                '@babel/preset-env',
-                { targets: { browsers: 'last 2 versions' } }, // or whatever your project requires
-              ],
+              '@babel/preset-env',
               '@babel/preset-typescript',
               '@babel/preset-react',
             ],
             plugins: [
-              // plugin-proposal-decorators is only needed if you're using experimental decorators in TypeScript
               ['@babel/plugin-proposal-decorators', { legacy: true }],
               ['@babel/plugin-proposal-class-properties', { loose: true }],
               'react-hot-loader/babel',
