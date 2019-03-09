@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   mode: 'development',
@@ -8,15 +9,16 @@ module.exports = {
 		'babel-polyfill',
 		'react-hot-loader/patch',
 		'webpack-hot-middleware/client',
-		'./src/client/index.tsx'
+		'./src/client/index.tsx',
+		'./dist/style.css'
 	],
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, '../dist'),
-    publicPath: '/',
+    publicPath: '/dist/',
 		// infinite HMR update
-		// hotUpdateChunkFilename: 'hot/hot-update.js',
-    // hotUpdateMainFilename: 'hot/hot-update.json'
+		hotUpdateChunkFilename: 'hot/hot-update.js',
+    hotUpdateMainFilename: 'hot/hot-update.json'
   },
   devtool: 'source-map',
   resolve: {
@@ -25,6 +27,17 @@ module.exports = {
 	watch: true,
   module: {
     rules: [
+			{
+				test: /\.css$/,
+        use: [ 'css-hot-loader' ].concat([
+          {
+            loader: 'file-loader',
+            options: {
+							name: 'bundle.css'
+						}
+          }
+        ])
+			},
       {
         test: /\.(j|t)sx?$/,
         exclude: /node_modules/,
@@ -49,6 +62,11 @@ module.exports = {
     ],
   },
   plugins: [
+		new ExtractTextPlugin({
+      filename: 'style.css',
+      disable: false,
+      allChunks: true
+    }),
     new webpack.HotModuleReplacementPlugin(),
     new ForkTsCheckerWebpackPlugin(),
   ],
