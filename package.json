@@ -37,7 +37,7 @@
     "css-hot-loader": "^1.4.3",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.9.0",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "file-loader": "^3.0.1",
     "fork-ts-checker-webpack-plugin": "^0.5.2",
     "gulp": "^4.0.0",
